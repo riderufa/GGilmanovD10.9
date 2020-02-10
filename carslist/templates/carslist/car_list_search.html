@@ -1,0 +1,31 @@
+{% extends 'carslist/carslist_base.html' %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+
+<!-- <form class="form-group" name="search-car-form">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input class=" btn btn-light" type="submit" value="Поиск">
+</form> -->
+
+
+<div class="row row-cols-1 row-cols-md-4 mt-5">
+  {% for car in cars %}
+  <div class="col mb-4">
+    <div class="card shadow-lg">
+      <img src="{% if car.image %} {{ car.image.url }} {% endif %}" class="card-img-top" alt="Нет фото">
+      <div class="card-body">
+        <h5 class="card-title">{{ car }}</h5>
+        <p class="card-text">{{ car.description }}</p>
+        <p class="card-text">{{ car.color }}</p>
+        <p class="card-text"><small class="text-muted">{{ car.get_transmission_display }}</small></p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
