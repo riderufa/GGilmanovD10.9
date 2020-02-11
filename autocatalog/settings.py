@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['frozen-dawn-60157.herokuapp.com']
 
 # INTERNAL_IPS = [
 #     '127.0.0.1',
