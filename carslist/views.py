@@ -18,9 +18,13 @@ class CarListView(FormView, ListView):
         query = Q()
         for key, value in search_form.items():
             if value and key in vars(Car):
-                query |= Q(**{key: value})
-        if search_form:
+                if self.request.GET.get('option1'):
+                    query &= Q(**{key: value})
+                else:
+                    query |= Q(**{key: value})
+        if query:
             return Car.objects.select_related("producer").select_related("color").prefetch_related("car_model").filter(query)
-            # return Car.objects.select_related("producer").select_related("color").prefetch_related("car_model").filter(Q(producer__title__contains=search_query) | Q(car_model__title__contains=search_query) | Q(year__contains=search_query) | Q(color__name__contains=search_query) | Q(transmission__contains=search_query))
+        if search_query:
+            return Car.objects.select_related("producer").select_related("color").prefetch_related("car_model").filter(Q(producer__title__contains=search_query) | Q(car_model__title__contains=search_query) | Q(year__contains=search_query) | Q(color__name__contains=search_query) | Q(transmission__contains=search_query))
         return Car.objects.select_related("producer").select_related("color").prefetch_related("car_model").all()
 

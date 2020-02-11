@@ -26,7 +26,7 @@ class Car(models.Model):
     car_model = models.ForeignKey(CarModel, on_delete=models.CASCADE, related_name="cars")
     year = models.IntegerField()
     description = models.TextField()
-    transmission = models.CharField(max_length=50, choices=[('A', 'automatic'), ('M', 'manual')])
+    transmission = models.CharField(max_length=50, choices=[('A', 'automatic'), ('M', 'manual'), (None, '')], blank=False)
     color = models.ForeignKey(Color, on_delete=models.CASCADE, blank=True, null=True, related_name="cars")
     image = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
 

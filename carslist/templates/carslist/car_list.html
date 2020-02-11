@@ -7,6 +7,15 @@
 <form class="form-group" name="search-car-form">
   {% csrf_token %}
   {% bootstrap_form form %}
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="radio" name="option1" id="option1" checked> AND
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="option2" id="option2"> OR
+    </label>
+    
+  </div>
   <input class=" btn btn-light" type="submit" value="Поиск">
 </form>
 
